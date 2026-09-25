@@ -1,57 +1,43 @@
-# Student Study Analyzer
+print("=== STUDY ANALYZER ===")
 
-A simple Python project that analyzes study sessions.
+sessions = []
 
-## What it does
+while True:
+    subject = input("Enter subject (or 'done' to finish): ")
 
-The program allows the user to enter:
+    if subject.lower() == "done":
+        break
 
-* Subject
-* Number of hours studied
-* Score
+    hours = float(input("Hours studied: "))
+    score = float(input("Score: "))
 
-After that, it calculates:
+    sessions.append({
+        "subject": subject,
+        "hours": hours,
+        "score": score
+    })
 
-* Total study time
-* Average score
-* Most studied subject
+print("\n=== RESULTS ===")
 
-## Technologies
+total_hours = sum(session["hours"] for session in sessions)
 
-* Python
+print(f"Total study time: {total_hours:.1f} hours")
 
-## How to run
+if sessions:
+    average_score = sum(
+        session["score"] for session in sessions
+    ) / len(sessions)
 
-```bash
-python main.py
-```
+    print(f"Average score: {average_score:.1f}")
 
-## Example
+    most_studied = max(
+        sessions,
+        key=lambda session: session["hours"]
+    )
 
-```text
-=== STUDY ANALYZER ===
-
-Enter subject (or 'done' to finish): English
-Hours studied: 1.5
-Score: 6
-
-Enter subject (or 'done' to finish): Math
-Hours studied: 2
-Score: 72
-
-Enter subject (or 'done' to finish): done
-
-=== RESULTS ===
-
-Total study time: 3.5 hours
-Average score: 39.0
-Most studied subject: Math
-```
-
-## Future improvements
-
-* Save data to a file
-* Add charts
-* Analyze progress over time
-* Add a graphical interface
-* Store data in a database
+    print(
+        f"Most studied subject: "
+        f"{most_studied['subject']}"
+    )
+else:
+    print("No study sessions were added.")
