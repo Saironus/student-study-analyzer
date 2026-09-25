@@ -1,43 +1,29 @@
-print("=== STUDY ANALYZER ===")
+# Student Study Analyzer
 
-sessions = []
+A simple Python project for analyzing study time and performance.
 
-while True:
-    subject = input("Enter subject (or 'done' to finish): ")
+## What it does
 
-    if subject.lower() == "done":
-        break
+The program allows the user to enter:
 
-    hours = float(input("Hours studied: "))
-    score = float(input("Score: "))
+* Subject
+* Number of hours studied
+* Score
 
-    sessions.append({
-        "subject": subject,
-        "hours": hours,
-        "score": score
-    })
+It then calculates:
 
-print("\n=== RESULTS ===")
+* Total study time
+* Average score
+* Most studied subject
 
-total_hours = sum(session["hours"] for session in sessions)
+## Technologies
 
-print(f"Total study time: {total_hours:.1f} hours")
+* Python
 
-if sessions:
-    average_score = sum(
-        session["score"] for session in sessions
-    ) / len(sessions)
+## Future improvements
 
-    print(f"Average score: {average_score:.1f}")
-
-    most_studied = max(
-        sessions,
-        key=lambda session: session["hours"]
-    )
-
-    print(
-        f"Most studied subject: "
-        f"{most_studied['subject']}"
-    )
-else:
-    print("No study sessions were added.")
+* Save data to a file
+* Add charts
+* Analyze progress over time
+* Add a graphical interface
+* Store data in a database
